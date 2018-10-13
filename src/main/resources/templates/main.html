@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>StartPage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 style="text-align:center">Список вакансий</h1>
+
+    <table border = "1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Заголовок</th>
+                <th>Оклад</th>
+                <th>Организация</th>
+                <th>Контакт</th>
+                <th>Телефон</th>
+                <th>Тип Занятности</th>
+                <th>Описание вакансии</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="part : ${listJobs}">
+                <td th:text="${part.id}"></td>
+                <td th:text="${part.titleJobs}"></td>
+                <td th:text="${part.salary}"></td>
+                <td th:text="${part.company}"></td>
+                <td th:text="${part.contact}"></td>
+                <td th:text="${part.phone}"></td>
+                <td th:text="${part.typeEmployment}"></td>
+                <td>
+                    <a th:href="@{description(id=${part.id})}">нажми меня</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="post" action="loadjobs">
+        <input type="text" name="url">
+        <button type="submit">Загрузить</button>
+    </form>
+</body>
+</html>
