@@ -33,7 +33,9 @@ public class ServiceYaRab implements Service {
         String description = "";
         List<Job> jobs = new ArrayList<Job>();
 
-        //создание doc из File("C:/myProject/myJobParser/abc.txt")
+        /**
+         * создание doc из File("C:/myProject/myJobParser/abc.txt")
+         */
         File htmlFile = new File("C:/myProject/myJobParser/abc.txt");
         Document doc = null;
         try {
@@ -42,10 +44,12 @@ public class ServiceYaRab implements Service {
             e.printStackTrace();
         }
 
+
         /**
          * создание doc из url
+         * <h2 class="why__title" style="">Почему так случилось?</h2>
          *
-         *
+
         Document doc = null;
         try {
 
@@ -56,6 +60,7 @@ public class ServiceYaRab implements Service {
             e.printStackTrace();
         }
          **/
+
 
         int count = 0;
         Elements elements = doc.getElementsByAttributeValue("class", "serp-vacancy stat i-bem stat_gate_yes stat_goal_yes stat_js_inited");

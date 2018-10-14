@@ -65,14 +65,26 @@ public class MyController {
         String urlWithPage = url;
         for (int i = 1; i <= count; i++) {
             urlWithPage = url + "&page_num=" + i;
-            jobs.addAll(new ServiceFactory(urlWithPage).getService().getJobs());
+            try {
+                jobs.addAll(new ServiceFactory(urlWithPage).getService().getJobs());
+            }
+            catch (NullPointerException e) {
+                System.out.println("url для парсинга не соответствует шаблону (https://rabota.yandex.ru/)");
+                System.out.println(e.toString());
+            }
+
         }
-        //int countForOst = COUNT_JOBS + 1;
         urlWithPage = url + "&page_num=" + (count + 1);
         List<Job> listForOst = new ServiceFactory(urlWithPage).getService().getJobs();
         for (int i = 1; i <= ost; i++) {
-            jobs.add(
-                    listForOst.get(i));
+            try {
+                jobs.add(listForOst.get(i));
+            }
+            catch (Exception e) {
+                System.out.println("blocked Yandex");
+                System.out.println(e.toString());
+            }
+
         }
         for (Job job:jobs
              ) {
@@ -82,5 +94,4 @@ public class MyController {
         model.addAttribute("listJobs", listJobs);
         return "main";
     }
-
 }
