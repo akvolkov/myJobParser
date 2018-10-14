@@ -7,7 +7,7 @@
     <body>
         <h1 style="text-align:center">Список вакансий</h1>
         <form method="post" action="loadjobs">
-            <input type="text" name="url">
+            <input type="text" placeholder="https://rabota.yandex.ru ... " name="url">
             <button type="submit">Загрузить</button>
         </form>
         <table border = "1">
@@ -34,10 +34,14 @@
                     <td th:text="${part.typeEmployment}"></td>
                     <td>
                         <a th:href="@{description(id=${part.id})}">нажми меня</a>
-
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div>Страницы:
+            <tr th:each="page : ${pages}">
+                <td><a th:href="@{pagination(numberPage=${page})}"><b th:text="${page}"></b></a></td>
+            </tr>
+        </div>
     </body>
 </html>

@@ -35,7 +35,7 @@ public class ServiceYaRab implements Service {
 
         /**
          * создание doc из File("C:/myProject/myJobParser/abc.txt")
-         */
+         *
         File htmlFile = new File("C:/myProject/myJobParser/abc.txt");
         Document doc = null;
         try {
@@ -43,13 +43,13 @@ public class ServiceYaRab implements Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        **/
 
         /**
          * создание doc из url
          * <h2 class="why__title" style="">Почему так случилось?</h2>
          *
-
+        **/
         Document doc = null;
         try {
 
@@ -59,8 +59,6 @@ public class ServiceYaRab implements Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-         **/
-
 
         int count = 0;
         Elements elements = doc.getElementsByAttributeValue("class", "serp-vacancy stat i-bem stat_gate_yes stat_goal_yes stat_js_inited");
@@ -74,19 +72,16 @@ public class ServiceYaRab implements Service {
                 if (elem.attr("class").equals("link stat__click") ||
                         elem.attr("class").equals("link link_upped_yes stat__click")) {
                     titleJobs = elem.text();
-                    System.out.println(count + " " + elem.text());
                 }
                 //salary
                 if (elem.attr("class").equals("serp-vacancy__salary")) {
                     salary = elem.text();
-                    System.out.println(count + " " + elem.text());
                 }
 
                 //company
-                //не все ищет
+                //не все присутствуют на странице Яндекса
                 if (elem.attr("class").equals("link link_nav_yes link_minor_yes i-bem")) {
                     company = elem.text();
-                    System.out.println(count + " " + elem.text());
                 }
 
                 //contact
@@ -98,22 +93,15 @@ public class ServiceYaRab implements Service {
                 //typeEmployment
                 if (elem.attr("class").equals("serp-vacancy__schedule")) {
                     typeEmployment = elem.text();
-                    System.out.println(count + " " + elem.text());
                 }
 
                 //description
                 if (elem.attr("class").equals("serp-vacancy__requirements")) {
                     description = elem.text();
-                    System.out.println(count + " " + elem.text());
                 }
             }
             Job job = new Job(titleJobs, salary, company, contact, phone, typeEmployment, description);
             jobs.add(job);
-        }
-
-        for (Job j :jobs
-             ) {
-            System.out.println(j);
         }
         return jobs;
     }

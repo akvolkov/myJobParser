@@ -1,5 +1,7 @@
 package com.mycompany.akvolkov.Services;
 
+import com.mycompany.akvolkov.MyController;
+
 public class ServiceFactory {
     private String url;
 
@@ -13,13 +15,11 @@ public class ServiceFactory {
 
     /**
      * Можно добавить создание Servise для других сайтов с вакансиями     *
-     * @return Service
+     *
      */
     public Service getService() {
         Service service = null;
-        //System.out.println("getService() - " + getUrl());
         if (getUrl().contains("rabota.yandex.ru")) {
-            //System.out.println("1");
             service = new ServiceYaRab(getUrl());
         }
         return service;
