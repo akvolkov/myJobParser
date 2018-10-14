@@ -1,15 +1,25 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>StartPage</title>
+        <title>Список вакансий</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <h1 style="text-align:center">Список вакансий</h1>
+
         <form method="post" action="loadjobs">
+            <h4>введите url по шаблону https://rabota.yandex.ru/...</h4>
             <input type="text" placeholder="https://rabota.yandex.ru ... " name="url">
             <button type="submit">Загрузить</button>
         </form>
+
+
+        <form method="post" action="filter">
+            <h4>фильтр по заголовку</h4>
+            <input type="text" placeholder="значение" name="filter">
+            <button type="submit">Найти</button>
+        </form>
+
+        <h1>Список вакансий:</h1>
         <table border = "1">
             <thead>
                 <tr>

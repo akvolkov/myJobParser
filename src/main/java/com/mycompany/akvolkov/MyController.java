@@ -32,6 +32,25 @@ public class MyController {
         return "greeting";
     }
 
+    //фильтр по имени
+    @PostMapping("filter")
+    public String filter (
+            @RequestParam String filter, Model model
+    ) {
+        if (filter.equals("")) {
+            Pageable pageable = PageRequest.of(numberPageForLoadJobs, 10);
+            Page<Job> page = jobsRepo.findAll(pageable);
+            model.addAttribute("listJobs", page);
+            pagesMethod(model);
+        }
+        else {
+            List<Job> byTitleJobs = jobsRepo.findByTitleJobs(filter);
+            model.addAttribute("listJobs", byTitleJobs);
+        }
+
+        return "main.html";
+    }
+
     @GetMapping("pagination")
     public String pagination (
             @RequestParam Integer numberPage, Model model
